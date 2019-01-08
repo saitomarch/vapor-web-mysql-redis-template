@@ -2,6 +2,7 @@ import Leaf
 import FluentMySQL
 import Authentication
 import Vapor
+import Redis
 
 /// Called before your application initializes.
 public func configure(_ config: inout Config, _ env: inout Environment, _ services: inout Services) throws {
@@ -9,6 +10,7 @@ public func configure(_ config: inout Config, _ env: inout Environment, _ servic
     try services.register(LeafProvider())
     try services.register(FluentMySQLProvider())
     try services.register(AuthenticationProvider())
+    try services.register(RedisProvider())
 
     // Register routes to the router
     let router = EngineRouter.default()

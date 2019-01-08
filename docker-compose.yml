@@ -1,0 +1,38 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: web.Dockerfile
+    container_name: vapor_web
+    image: web:dev
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: vapor_user
+      MYSQL_PASSWORD: vapor_password
+      MYSQL_DATABASE: vapor_db
+      ENVIRONMENT: web
+    ports:
+      - 8080:8080
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    # entrypoint: bash
+    links:
+      - mysql
+      - redis
+    depends_on:
+      - mysql
+      - redis
+  mysql:
+    container_name: vapor_mysql
+    image: mariadb:10
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: vapor_user
+      MYSQL_PASSWORD: vapor_password
+      MYSQL_DATABASE: vapor_db
+  redis:
+    container_name: vapor_redis
+    image: redis:alpine
+

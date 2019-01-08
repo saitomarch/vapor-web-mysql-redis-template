@@ -15,9 +15,12 @@ let package = Package(
         
         // 👤 Authentication and Authorization layer for Fluent.
         .package(url: "https://github.com/vapor/auth.git", from: "2.0.0"),
+        
+        // ⚡️Non-blocking, event-driven Redis client.
+        .package(url: "https://github.com/vapor/redis.git", from: "3.0.0")
     ],
     targets: [
-        .target(name: "App", dependencies: ["Leaf", "Authentication", "FluentMySQL", "Vapor"]),
+        .target(name: "App", dependencies: ["Leaf", "Authentication", "FluentMySQL", "Redis", "Vapor"]),
         .target(name: "Run", dependencies: ["App"]),
         .testTarget(name: "AppTests", dependencies: ["App"])
     ]
