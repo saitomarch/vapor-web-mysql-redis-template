@@ -13,7 +13,7 @@ services:
       MYSQL_DATABASE: vapor_db
       ENVIRONMENT: dev
     ports:
-      - 8080:8080
+      - 8080:80
     stdin_open: true
     tty: true
     restart: unless-stopped
