@@ -11,13 +11,12 @@ services:
       MYSQL_USER: vapor_user
       MYSQL_PASSWORD: vapor_password
       MYSQL_DATABASE: vapor_db
-      ENVIRONMENT: web
+      ENVIRONMENT: dev
     ports:
       - 8080:8080
     stdin_open: true
     tty: true
     restart: unless-stopped
-    # entrypoint: bash
     links:
       - mysql
       - redis
